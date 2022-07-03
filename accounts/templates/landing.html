@@ -1,0 +1,681 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<!-- <script type="text/javascript" src="../eel.js"></script> -->
+<style>
+  
+ body{background-color:black;}
+
+.cod{display:flex;flex-direction:row;}
+     
+        .hea{flex-grow:1;padding:5rem 7rem;}
+        .hea h1{font-size:6rem}
+        #sec{flex-grow:5;}
+        .section{margin:0 auto;}
+        .section{
+            position:relative;
+            width:500px;
+            height:650px;
+            background:url('static/p2.jpg') no-repeat;
+            background-size: 100% 100%;
+            /* background:url(mak.webp); */
+            object-fit: cover;
+            overflow:hidden;
+
+        }
+
+        .btnb {
+ width: 6.5em;
+ height: 2.3em;
+ margin: 0.5em;
+ background: #16C8E1;
+ color: white;
+ border: none;
+ border-radius: 0.625em;
+ font-size: 20px;
+ font-weight: bold;
+ cursor: pointer;
+ position: relative;
+ z-index: 1;
+ overflow: hidden;
+ 
+}
+
+button.btnb:hover {
+ color: white;
+}
+
+button.btnb:after {
+ content: "";
+ background: #8970EC;
+ position: absolute;
+ z-index: -1;
+ left: -20%;
+ right: -20%;
+ top: 0;
+ bottom: 0;
+ transform: skewX(-45deg) scale(0, 1);
+ transition: all 0.5s;
+}
+
+button.btnb:hover:after {
+ transform: skewX(-45deg) scale(1, 1);
+ -webkit-transition: all 0.5s;
+ transition: all 0.5s;
+}
+
+        @media only screen and (max-width: 600px) {
+    .cod{flex-direction:column}
+    .hea{margin:0 auto;padding:1rem;}
+    .hea h1{font-size: 3.7rem;text-align:center;}
+    .hea h1 span{display:inline}
+        .phide{display:none;}
+        .section{
+            position:relative;
+            width:390px;
+            height:391px;
+            background:url('static/p21.jpg') no-repeat;
+            background-size: 100% 100%;
+            /* background:url(mak.webp); */
+            object-fit: cover;
+            overflow:hidden;
+
+        }
+        .btnb{margin: 0 auto;}
+}
+      
+
+        section .wave{
+            position:absolute;
+            bottom:0;left:0;
+            width:100%;
+            height:80px;
+            background:url('/static/w1.png');
+            background-size: 1000px 80px;
+        }
+        section .waveb{
+            position:absolute;
+            bottom:0;left:0;
+            width:80px;
+            height:100%;
+            background:url('/static/w2.png');
+            background-size: 80px 1000px;
+        }
+        section .wavebc{
+            position:absolute;
+            bottom:0;right:0;
+            width:80px;
+            height:100%;
+            background:url('/static/w2.png');
+            background-size: 80px 1000px;
+        }
+        section .waveb.wave1, .wavebc.wave1{
+            animation:animate2 9s linear infinite;
+         z-index:1000;opacity:1;
+        animation-delay:7s;bottom :0; 
+        }
+        section .wave.wave1{
+            animation:animate1 9s linear infinite;
+         z-index:1000;opacity:1;
+        animation-delay:0s;bottom :0; 
+        }
+         section wave.wave2{
+        animation:animate2 9s linear infinite;
+        z-index:999;
+        opacity:.5;
+        animation-delay:-8s;
+        bottom :10px;
+        } 
+        @keyframes animate1{
+            0%{
+                background-position-x:0;
+            }
+            100%{ 
+                background-position-x:1000px;
+            }
+        }
+        @keyframes animate2{
+            0%{
+                background-position-y:0;
+            }
+            100%{background-position-y:-1000px;}
+        }
+        
+        /* From cssbuttons.io by @westitan */
+
+@keyframes animate {
+ 0% {
+  transform: translate(-50%, -75%) rotate(0deg);
+ }
+
+ 100% {
+  transform: translate(-50%, -75%) rotate(360deg);
+ }
+}
+
+</style>
+<div class="cod intro" style="min-height:100vh;width:100%;background-color:black" >
+  <div class="hea" style="margin:0 auto; display: flex;flex-direction: column;">
+      <h1 style="color:white;font-weight:bolder;">Discover Brand New Anime
+           <!-- <span style="display:block;">   Anime</span>     -->
+      <!-- <span style="display:block;"> Anime </span>     -->
+      </h1>
+      <h4 class="phide" style="color:white;width:71%">My Anime Dictionary is a dynamic website that is developed using
+          Python Django framework and content Based Anime Recommendation System </h4>
+
+      <button   class="btnb" style="transform: scale(1.2);border-radius:3px"  onclick="deku()">
+      Get Started
+        </button>
+  </div>
+  <div id="sec"> <section class="section"> 
+      <div class="waveb wave1" style="right:0;bottom:0"></div>
+      <div class="wavebc wave1" style="right:0;top:0;transform: rotate(180deg);"></div>
+      <div class="wave wave1" style="transform: rotate(180deg);top:0;"></div>
+      <!-- <div class="waveb wave1" style="transform: rotate(270deg);left:0;"></div> -->
+      <div class="wave wave1" style=""></div>
+
+
+      <!-- <div class="wave wave2"></div> -->
+  </section></div>
+ 
+</div>
+
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"
+  integrity="sha512-IQLehpLoVS4fNzl7IfH8Iowfm5+RiMGtHykgZJl9AWMgqx0AmJ6cRWcB+GaGVtIsnC4voMfm8f2vwtY+6oPjpQ=="
+  crossorigin="anonymous"
+></script>
+<script>
+// document.getElementByClass("animan").style.display = "none";
+  function deku() {  
+  const tl = gsap.timeline({ defaults: { ease: "power1.out" } });
+
+// tl.to(".text", { y: "0%", duration: 3, stagger: 0.25 });
+
+tl.to(".intro", { display:"none", duration: 3 }, "-=1");
+document.getElementById("animan").style.display = "block"; 
+tl.fromTo("#animan", { opacity: 0 }, { opacity: 1, duration: 2 });
+tl.fromTo("#animan", { maxheight:"100vh" }, {maxheight: "100%", duration: 2 });
+// tl.fromTo(".big-text", { opacity: 0 }, { opacity: 1, duration: 3 }, "-=1");
+}
+</script>
+<div id="animan" style="display:none" >
+  <div class="headouter" style="display:flex;">
+<div class="head nop" style="font-size:3rem; font-weight: 800 ;
+ color: azure;  
+
+
+
+margin-bottom: 2rem ; border-radius:.2rem;width:99% ;margin: 1.9rem auto;border:11px; " >
+<h1 class="digiplay " style="text-align:center;
+ text-transform: capitalize;font-weight:900">
+{% if user.is_authenticated %}
+Hi {{request.user.username}}
+
+{% endif %}
+
+</h1>
+<div class="search" style="margin: 0 .4rem;"><form action="#" class="search-container" 
+  onSubmit="return checkAnswer();"
+style="display: flex;flex-direction: row;justify-content: center;">
+  <input class="nav-search" id="answer" type="text" 
+  placeholder="Search New Anime" autofocus name="search">
+  <button class="search-btn submit" style="border-radius:0px 10px 10px 0;padding-right:1rem" type="submit" onclick="checkAnswer()"
+   value="SUBMIT"><i class="fa fa-search"></i></button>
+</form>
+<script>
+  function checkAnswer(){
+      var response = document.getElementById('answer').value;
+
+      location = 'https://my-anime-dictionary.herokuapp.com/search_anime/'+response; // 'right.html';
+      return false;
+  }
+  </script>
+</div>
+<div class="owl-carousel owl-theme" style="margin-bottom: .8rem;margin-top: 1.8rem; z-index:777">
+  <div class="item" style="font-size:18px;text-align:center;text-decoration: none;border-radius: 15px;padding: .1rem .6rem;  "><a href="/gen/Shounen">
+    <img src="{% static '9.svg' %}" height="225px" alt="">
+    Shounen</a></div>
+  <div class="item" style="font-size:18px;text-align:center;text-decoration: none;border-radius: 15px;padding: .1rem .6rem; "><a href="/gen/Comedy">
+    <img src="{% static '8.svg' %}"   height="225px" alt="">
+    Comedy</a></div>
+  <div class="item" style="font-size:18px;text-align:center;text-decoration: none;border-radius: 15px;padding: .1rem .6rem; "><a href="/gen/Action">   
+    <img src="{% static '1.svg' %}" height="225px" alt="">
+    Action</a></div>
+  <div class="item" style="font-size:18px;text-align:center;text-decoration: none;border-radius: 15px;padding: .1rem .6rem; "><a href="/gen/Adventure"> 
+    <img src="{% static '2.svg' %}"  height="225px" alt="">
+    Adventure</a></div>
+  <div class="item" style="font-size:18px;text-align:center;text-decoration: none;border-radius: 15px;padding: .1rem .6rem; "><a href="/gen/SliceofLife">
+    <img src="{% static '3.svg' %}"  height="225px" alt="">
+    Slice of Life</a></div>
+  <div class="item" style="font-size:18px;text-align:center;text-decoration: none;border-radius: 15px;padding: .1rem .6rem; "><a href="/gen/Sci-Fi">
+    <img src="{% static '4.svg' %}"  height="225px" alt="">
+    Sci-Fi</a></div>
+  <div class="item" style="font-size:18px;text-align:center;text-decoration: none;border-radius: 15px;padding: .1rem .6rem; "><a href="/gen/Mystery">
+    <img src="{% static '5.svg' %}"  height="225px" alt="">
+    Mystery</a></div>
+  <div class="item" style="font-size:18px;text-align:center;text-decoration: none;border-radius: 15px;padding: .1rem .6rem; "><a href="/gen/Sports">
+       <img src="{% static '6.svg' %}"  height="225px" alt="">
+    Sports</a></div>
+  <div class="item" style="font-size:18px;text-align:center;text-decoration: none;border-radius: 15px;padding: .1rem .6rem; "><a href="/gen/Romance">
+       <img src="{% static '7.svg' %}"  height="225px" alt="">
+    Romance</a></div>
+  <div class="item" style="font-size:18px;text-align:center;text-decoration: none;border-radius: 15px;padding: .1rem .6rem; "><a href="/gen/Suspense">
+       <img src="{% static '8.svg' %}"  height="225px" alt="">
+    Suspense</a></div>
+  <div class="item" style="font-size:18px;text-align:center;text-decoration: none;border-radius: 15px;padding: .1rem .6rem; "><a href="/gen/Military">
+       <img src="{% static '10.svg' %}"  height="225px" alt="">
+    Military</a></div>
+  <div class="item" style="font-size:18px;text-align:center;text-decoration: none;border-radius: 15px;padding: .1rem .6rem; "><a href="/gen/School">
+       <img src="{% static '9.svg' %}"  height="225px" alt="">
+    School</a></div>
+
+ 
+ </div> 
+</div></div>
+
+<!-- 
+<h3 style="color: white; margin-left:1rem;margin-bottom:1rem; font-weight: 800;">Upcoming Anime</h3>
+<div class="owl-carousel owl-theme">
+  <iframe class="item" width="209" height="131"  src="https://www.youtube.com/embed/iutQJzAXiWo?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <iframe class="item" width="209" height="131" src="https://www.youtube.com/embed/cvTipU9gN5g?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <iframe class="item" width="209" height="131" src="https://www.youtube.com/embed/QHcLGFgb2y8?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <iframe class="item" width="209" height="131" src="https://www.youtube.com/embed/8hCFP2YBBjY?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <iframe class="item" width="209" height="131" src="https://www.youtube.com/embed/LldG8IRxN_w?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+ <iframe class="item" width="209" height="131" src="https://www.youtube.com/embed/hYtx7k5vGJg?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <iframe class="item" width="209" height="131" src="https://www.youtube.com/embed/AJxa21Nyxuc?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <iframe class="item" width="209" height="131" src="https://www.youtube.com/embed/Wu1KNFBnZDA?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+</div>
+<br><br><br> -->
+<h3 style="color: white; margin-left:1rem;margin-bottom:1rem; font-weight: 800;">Top rated</h3>
+<div class="owl-carousel owl-theme">
+    
+    {% for i in toprated %}
+    
+  
+      <div id="{{i.english_name}}"  class="item zoom" style="text-align: center;color:white; width:100% ">
+        <!-- onClick="reply_click(this.id)" -->
+        <a href="/similar_by_content/{{i.english_name}}" style="display:inline-block; margin: 0 auto;"  >
+        <img src="{{i.img_src}}" style="cursor: pointer;" class="gap{{i}} slide-image"    height="295px"   alt="">
+        <p style="position: relative; bottom:79px; width:88%;
+         backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(17, 25, 40, 0.75);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+        margin: 1px auto;margin-bottom:-51px;padding:11px 11px;" >{{i.english_name | slice:':25'}}</p> 
+        <!-- <p>{{i.img_src}}</p> -->
+      </a>
+      </div>
+   
+    {% endfor %}
+  
+
+</div>
+<h3 style="color: white; margin-left:1rem;margin-bottom:1rem; font-weight: 800;">Highly Liked</h3>
+<div class="owl-carousel owl-theme">
+    
+    {% for i in hightwatch %}
+    
+  
+      <div id="{{i.english_name}}"  class="item zoom" style="text-align: center;color:white; width:100% ">
+        <!-- onClick="reply_click(this.id)" -->
+        <a href="/similar_by_content/{{i.english_name}}" style="display:inline-block; margin: 0 auto;"  >
+        <img src="{{i.img_src}}" style="cursor: pointer;" class="gap{{i}} slide-image"    height="295px"  alt="">
+        <p style="position: relative; bottom:79px; width:88%;
+         backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(17, 25, 40, 0.75);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+        margin: 1px auto;margin-bottom:-51px;padding:11px 11px;" >{{i.english_name | slice:':25'}}</p> 
+        <!-- <p>{{i.img_src}}</p> -->
+      </a>
+      </div>
+   
+    {% endfor %}
+  
+
+</div>
+<h3 style="color: white; margin-left:1rem;margin-bottom:1rem; font-weight: 800;">Movies</h3>
+<div class="owl-carousel owl-theme">
+    
+    {% for i in movie %}
+    
+  
+      <div id="{{i.english_name}}"  class="item zoom" style="text-align: center;color:white; width:100% ">
+        <!-- onClick="reply_click(this.id)" -->
+        <a href="/similar_by_content/{{i.english_name}}" style="display:inline-block; margin: 0 auto;"  >
+        <img src="{{i.img_src}}" style="cursor: pointer;" class="gap{{i}} slide-image"    height="295px"  alt="">
+        <p style="position: relative; bottom:79px; width:88%;
+         backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(17, 25, 40, 0.75);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+        margin: 1px auto;margin-bottom:-51px;padding:11px 11px;" >{{i.english_name | slice:':25'}}</p> 
+        <!-- <p>{{i.img_src}}</p> -->
+      </a>
+      </div>
+   
+    {% endfor %}
+  
+
+</div>
+<h3 style="color: white; margin-left:1rem;margin-bottom:1rem; font-weight: 800;">Mystery</h3>
+<div class="owl-carousel owl-theme">
+    
+    {% for i in mystery %}
+    
+  
+      <div id="{{i.english_name}}"  class="item zoom" style="text-align: center;color:white; width:100% ">
+        <!-- onClick="reply_click(this.id)" -->
+        <a href="/similar_by_content/{{i.english_name}}" style="display:inline-block; margin: 0 auto;"  >
+        <img src="{{i.img_src}}" style="cursor: pointer;" class="gap{{i}} slide-image"    height="295px"  alt="">
+        <p style="position: relative; bottom:79px; width:88%;
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(17, 25, 40, 0.75);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+        margin: 1px auto;margin-bottom:-51px;padding:11px 11px;" >{{i.english_name | slice:':25'}}</p> 
+        <!-- <p>{{i.img_src}}</p> -->
+      </a>
+      </div>
+     
+    {% endfor %}
+  
+
+</div>
+<h3 style="color: white; margin-left:1rem;margin-bottom:1rem; font-weight: 800;">Shounen</h3>
+<div class="owl-carousel owl-theme">
+    
+    {% for i in Shounen %}
+    
+  
+      <div id="{{i.english_name}}"  class="item zoom" style="text-align: center;color:white; height:100% ">
+        <!-- onClick="reply_click(this.id)" -->
+        <a href="/similar_by_content/{{i.english_name}}" style="display:inline-block; margin: 0 auto;"  >
+        <img src="{{i.img_src}}" style="cursor: pointer;" class="gap{{i}} slide-image"    height="295px"  alt="">
+        <p style="position: relative; bottom:79px; width:88%;
+         backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(17, 25, 40, 0.75);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+        margin: 1px auto;margin-bottom:-51px;padding:11px 11px;" >{{i.english_name | slice:':25'}}</p> 
+        <!-- <p>{{i.img_src}}</p> -->
+      </a>
+      </div>
+   
+    {% endfor %}
+  
+
+</div>
+<h3 style="color: white; margin-left:1rem;margin-bottom:1rem; font-weight: 800;">Romance</h3>
+<div class="owl-carousel owl-theme">
+    
+    {% for i in Romance %}
+    
+  
+      <div id="{{i.english_name}}"  class="item zoom" style="text-align: center;color:white; width:100% ">
+        <!-- onClick="reply_click(this.id)" -->
+        <a href="/similar_by_content/{{i.english_name}}" style="display:inline-block; margin: 0 auto;"  >
+        <img src="{{i.img_src}}" style="cursor: pointer;" class="gap{{i}} slide-image"    height="295px"  alt="">
+        <p style="position: relative; bottom:79px; width:88%;
+         backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(17, 25, 40, 0.75);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+        margin: 1px auto;margin-bottom:-51px;padding:11px 11px;" >{{i.english_name | slice:':25'}}</p> 
+        <!-- <p>{{i.img_src}}</p> -->
+      </a>
+      </div>
+   
+    {% endfor %}
+  
+
+</div>
+<h3 style="color: white; margin-left:1rem;margin-bottom:1rem; font-weight: 800;">Drama</h3>
+<div class="owl-carousel owl-theme">
+    
+    {% for i in Drama %}
+    
+  
+      <div id="{{i.english_name}}"  class="item zoom" style="text-align: center;color:white; width:100% ">
+        <!-- onClick="reply_click(this.id)" -->
+        <a href="/similar_by_content/{{i.english_name}}" style="display:inline-block; margin: 0 auto;"  >
+        <img src="{{i.img_src}}" style="cursor: pointer;" class="gap{{i}} slide-image"    height="295px"  alt="">
+        <p style="position: relative; bottom:79px; width:88%;
+         backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(17, 25, 40, 0.75);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+        margin: 1px auto;margin-bottom:-51px;padding:11px 11px;" >{{i.english_name | slice:':25'}}</p> 
+        <!-- <p>{{i.img_src}}</p> -->
+      </a>
+      </div>
+   
+    {% endfor %}
+  
+
+</div>
+<h3 style="color: white; margin-left:1rem;margin-bottom:1rem; font-weight: 800;">Suspense</h3>
+<div class="owl-carousel owl-theme">
+  <!-- Suspenseb -->
+  {% for i in Suspenseb %}
+    
+  
+      <div id="{{i.english_name}}"  class="item zoom" style="text-align: center;color:white; width:100% ">
+        <!-- onClick="reply_click(this.id)" -->
+        <a href="/similar_by_content/{{i.english_name}}" style="display:inline-block; margin: 0 auto;"  >
+        <img src="{{i.img_src}}" style="cursor: pointer;" class="gap{{i}} slide-image"    height="295px"  alt="">
+        <p style="position: relative; bottom:79px; width:88%;
+         backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(17, 25, 40, 0.75);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+        margin: 1px auto;margin-bottom:-51px;padding:11px 11px;" >{{i.english_name | slice:':25'}}</p> 
+        <!-- <p>{{i.img_src}}</p> -->
+      </a>
+      </div>
+   
+    {% endfor %}
+    {% for i in Suspense %}
+    
+  
+      <div id="{{i.english_name}}"  class="item zoom" style="text-align: center;color:white; width:100% ">
+        <!-- onClick="reply_click(this.id)" -->
+        <a href="/similar_by_content/{{i.english_name}}" style="display:inline-block; margin: 0 auto;"  >
+        <img src="{{i.img_src}}" style="cursor: pointer;" class="gap{{i}} slide-image"    height="295px"  alt="">
+        <p style="position: relative; bottom:79px; width:88%;
+         backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(17, 25, 40, 0.75);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+        margin: 1px auto;margin-bottom:-51px;padding:11px 11px;" >{{i.english_name | slice:':25'}}</p> 
+        <!-- <p>{{i.img_src}}</p> -->
+      </a>
+      </div>
+   
+    {% endfor %}
+  
+
+</div>
+<h3 style="color: white; margin-left:1rem;margin-bottom:1rem; font-weight: 800;">Supernatural</h3>
+<div class="owl-carousel owl-theme">
+    
+    {% for i in Supernatural %}
+    
+  
+      <div id="{{i.english_name}}"  class="item zoom" style="text-align: center;color:white; width:100% ">
+        <!-- onClick="reply_click(this.id)" -->
+        <a href="/similar_by_content/{{i.english_name}}" style="display:inline-block; margin: 0 auto;"  >
+        <img src="{{i.img_src}}" style="cursor: pointer;" class="gap{{i}} slide-image"    height="295px"  alt="">
+        <p style="position: relative; bottom:79px; width:88%;
+         backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(17, 25, 40, 0.75);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+        margin: 1px auto;margin-bottom:-51px;padding:11px 11px;" >{{i.english_name | slice:':25'}}</p> 
+        <!-- <p>{{i.img_src}}</p> -->
+      </a>
+      </div>
+   
+    {% endfor %}
+  
+
+</div>
+<h3 style="color: white; margin-left:1rem;margin-bottom:1rem; font-weight: 800;">Mecha</h3>
+<div class="owl-carousel owl-theme">
+  <!-- Mechab -->
+  {% for i in Mechab %}
+    
+  
+  <div id="{{i.english_name}}"  class="item zoom" style="text-align: center;color:white; width:100% ">
+    <!-- onClick="reply_click(this.id)" -->
+    <a href="/similar_by_content/{{i.english_name}}" style="display:inline-block; margin: 0 auto;"  >
+    <img src="{{i.img_src}}" style="cursor: pointer;" class="gap{{i}} slide-image"    height="295px"  alt="">
+    <p style="position: relative; bottom:79px; width:88%;
+     backdrop-filter: blur(16px) saturate(180%);
+-webkit-backdrop-filter: blur(16px) saturate(180%);
+background-color: rgba(17, 25, 40, 0.75);
+border-radius: 12px;
+border: 1px solid rgba(255, 255, 255, 0.125);
+    margin: 1px auto;margin-bottom:-51px;padding:11px 11px;" >{{i.english_name | slice:':25'}}</p> 
+    <!-- <p>{{i.img_src}}</p> -->
+  </a>
+  </div>
+
+{% endfor %}
+    {% for i in Mecha %}
+    
+  
+      <div id="{{i.english_name}}"  class="item zoom" style="text-align: center;color:white; width:100% ">
+        <!-- onClick="reply_click(this.id)" -->
+        <a href="/similar_by_content/{{i.english_name}}" style="display:inline-block; margin: 0 auto;"  >
+        <img src="{{i.img_src}}" style="cursor: pointer;" class="gap{{i}} slide-image"    height="295px"  alt="">
+        <p style="position: relative; bottom:79px; width:88%;
+         backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(17, 25, 40, 0.75);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+        margin: 1px auto;margin-bottom:-51px;padding:11px 11px;" >{{i.english_name | slice:':25'}}</p> 
+        <!-- <p>{{i.img_src}}</p> -->
+      </a>
+      </div>
+   
+    {% endfor %}
+  
+
+</div>
+<h3 style="color: white; margin-left:1rem;margin-bottom:1rem; font-weight: 800;">Sports</h3>
+<div class="owl-carousel owl-theme">
+    
+    {% for i in Sports %}
+    
+  
+      <div id="{{i.english_name}}"  class="item zoom" style="text-align: center;color:white; width:100% ">
+        <!-- onClick="reply_click(this.id)" -->
+        <a href="/similar_by_content/{{i.english_name}}" style="display:inline-block; margin: 0 auto;"  >
+        <img src="{{i.img_src}}" style="cursor: pointer;" class="gap{{i}} slide-image"    height="295px"  alt="">
+        <p style="position: relative; bottom:79px; width:88%;
+         backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(17, 25, 40, 0.75);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+        margin: 1px auto;margin-bottom:-51px;padding:11px 11px;" >{{i.english_name | slice:':25'}}</p> 
+        <!-- <p>{{i.img_src}}</p> -->
+      </a>
+      </div>
+   
+    {% endfor %}
+  
+
+</div>
+<h3 style="color: white; margin-left:1rem;margin-bottom:1rem; font-weight: 800;">Historical</h3>
+<div class="owl-carousel owl-theme">
+    
+    {% for i in Historical %}
+    
+  
+      <div id="{{i.english_name}}"  class="item zoom" style="text-align: center;color:white; width:100% ">
+        <!-- onClick="reply_click(this.id)" -->
+        <a href="/similar_by_content/{{i.english_name}}" style="display:inline-block; margin: 0 auto;"  >
+        <img src="{{i.img_src}}" style="cursor: pointer;" class="gap{{i}} slide-image"    height="295px"  alt="">
+        <p style="position: relative; bottom:79px; width:88%;
+         backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(17, 25, 40, 0.75);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+        margin: 1px auto;margin-bottom:-51px;padding:11px 11px;" >{{i.english_name | slice:':25'}}</p> 
+        <!-- <p>{{i.img_src}}</p> -->
+      </a>
+      </div>
+   
+    {% endfor %}
+  
+
+</div>
+<h3 style="color: white; margin-left:1rem;margin-bottom:1rem; font-weight: 800;">Sci-Fi</h3>
+<div class="owl-carousel owl-theme">
+    
+    {% for i in Sci_fi %}
+    
+  
+      <div id="{{i.english_name}}"  class="item zoom" style="text-align: center;color:white; width:100% ">
+        <!-- onClick="reply_click(this.id)" -->
+        <a href="/similar_by_content/{{i.english_name}}" style="display:inline-block; margin: 0 auto;"  >
+        <img src="{{i.img_src}}" style="cursor: pointer;" class="gap{{i}} slide-image"    height="295px"  alt="">
+        <p style="position: relative; bottom:79px; width:88%;
+         backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(17, 25, 40, 0.75);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+        margin: 1px auto;margin-bottom:-51px;padding:11px 11px;" >{{i.english_name | slice:':25'}}</p> 
+        <!-- <p>{{i.img_src}}</p> -->
+      </a>
+      </div>
+   
+    {% endfor %}
+  
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>$('.owl-carousel').owlCarousel({
+    loop:false,
+    margin:10,
+    nav:false,
+    dots:false,
+    autoplay:true,
+    autoplayTimeout:14000,
+    // stagePadding:10,
+    responsive:{
+        0:{
+            items:1
+        },
+        350:{items:2},
+    
+        600:{
+            items:4
+        },
+        
+        1000:{
+            items:7
+        }
+    }
+})</script>
+</div> 
+{% endblock %}
+

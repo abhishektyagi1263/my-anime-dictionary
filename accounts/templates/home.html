@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- <script type="text/javascript" src="../eel.js"></script> -->
+
+<div class="head" style="font-size:3rem; font-weight: 800 ; color: azure;  background: linear-gradient(to right, #00dbde, #fc00ff);;
+padding: 3.8rem 1rem 1rem 3rem;margin-bottom: 2rem ; border-radius:.2rem;  " class="mx-5">
+<h1 style="text-align:center; text-transform: capitalize;font-size:3 rem">
+{% if user.is_authenticated %}
+Welcome {{request.user.username}}
+{% else %}
+Welcome To My Anime Dictinary
+{% endif %}
+</h1>
+<div class="search" style="margin: 0 .4rem;"><form action="#" class="search-container" 
+style="display: flex;flex-direction: row;justify-content: center;">
+  <input class="nav-search" type="text" placeholder="Search New Anime" name="search">
+  <button class="search-btn" type="submit"><i class="fa fa-search"></i></button>
+</form></div>
+<div class="owl-carousel owl-theme" style="margin-bottom: .8rem;margin-top: 1.8rem; z-index:777">
+  <div class="item" style="font-size:18px;text-align:center;text-decoration: none;border-radius: 15px;padding: .1rem .6rem;background-color: hsla(0,0%,100%,.1); "><a href="/gen/Shounen">Shounen</a></div>
+  <div class="item" style="font-size:18px;text-align:center;text-decoration: none;border-radius: 15px;padding: .1rem .6rem;background-color: hsla(0,0%,100%,.1);"><a href="/gen/Comedy">Comedy</a></div>
+  <div class="item" style="font-size:18px;text-align:center;text-decoration: none;border-radius: 15px;padding: .1rem .6rem;background-color: hsla(0,0%,100%,.1);"><a href="/gen/Action">Action</a></div>
+  <div class="item" style="font-size:18px;text-align:center;text-decoration: none;border-radius: 15px;padding: .1rem .6rem;background-color: hsla(0,0%,100%,.1);"><a href="/gen/Adventure">Adventure</a></div>
+  <div class="item" style="font-size:18px;text-align:center;text-decoration: none;border-radius: 15px;padding: .1rem .6rem;background-color: hsla(0,0%,100%,.1);"><a href="/gen/SliceofLife">Slice of Life</a></div>
+  <div class="item" style="font-size:18px;text-align:center;text-decoration: none;border-radius: 15px;padding: .1rem .6rem;background-color: hsla(0,0%,100%,.1);"><a href="/gen/Sci-Fi">Sci-Fi</a></div>
+  <div class="item" style="font-size:18px;text-align:center;text-decoration: none;border-radius: 15px;padding: .1rem .6rem;background-color: hsla(0,0%,100%,.1);"><a href="/gen/Mystery">Mystery</a></div>
+  <div class="item" style="font-size:18px;text-align:center;text-decoration: none;border-radius: 15px;padding: .1rem .6rem;background-color: hsla(0,0%,100%,.1);"><a href="/gen/Sports">Sports</a></div>
+  <div class="item" style="font-size:18px;text-align:center;text-decoration: none;border-radius: 15px;padding: .1rem .6rem;background-color: hsla(0,0%,100%,.1);"><a href="/gen/Romance">Romance</a></div>
+  <div class="item" style="font-size:18px;text-align:center;text-decoration: none;border-radius: 15px;padding: .1rem .6rem;background-color: hsla(0,0%,100%,.1);"><a href="/gen/Suspense">Suspense</a></div>
+  <div class="item" style="font-size:18px;text-align:center;text-decoration: none;border-radius: 15px;padding: .1rem .6rem;background-color: hsla(0,0%,100%,.1);"><a href="/gen/Military">Military</a></div>
+  <div class="item" style="font-size:18px;text-align:center;text-decoration: none;border-radius: 15px;padding: .1rem .6rem;background-color: hsla(0,0%,100%,.1);"><a href="/gen/School">School</a></div>
+
+  <!-- <a href="/gen/Comedy" >Comedy</a> -->
+</div>
+</div>
+
+<ul class="cards " style="z-index: 777;">
+  {% for i in data %}
+ 
+ 
+
+    <li class="item">
+      <a href="similar_by_content/{{i.english_name}}" class="cardm">
+        <img src="{{i.img_src}}" class="card__image" height="361px"  width="235px"alt="" />
+        <div class="card__overlay">
+          <div class="card__header">
+            <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>                     
+            
+            <div class="card__header-text">
+              <h3 class="card__title" style="font-size: 1.2rem;">{{i.english_name | slice:':25'}}</h3>
+             </div>
+            
+          </div>
+          <p class="card__description">Rating: {{i.rating}}
+
+            <Span style="display: block;">Type :  
+              {{i.animetype}}</Span>
+          </p>
+         
+        </div>
+      </a>
+    </li>
+      
+  
+  {% endfor %}
+</ul>
+
+
+<!-- js code ahead -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>$('.owl-carousel').owlCarousel({
+    loop:true,
+    margin:10,
+    nav:false,
+    dots:false,
+    autoplay:true,
+    responsive:{
+        0:{
+            items:3
+        },
+        600:{
+            items:6
+        },
+        1000:{
+            items:9
+        }
+    }
+    
+})
+
+</script>
+
+{% endblock %}
+

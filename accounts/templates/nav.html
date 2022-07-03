@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<style>
+
+
+</style>
+<body>
+    <!-- h1 -->
+    <div class="navbar" style="  
+  margin-top:.6rem ">
+        <div class="container">
+            <div id="mobile-cta" style="height:15px">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            <a href="{% url 'home' %}" style="display: flex; z-index:99999" class="logo">
+                <!-- <lottie-player src="https://assets4.lottiefiles.com/temporary_files/jzVfLn.json"  background="transparent"  speed="1"  style="width: 60px; height: 60px;"  loop  autoplay></lottie-player> -->
+        
+              <!-- <img src="{% static 'js/g911.png' %}" alt=""> -->
+              <img class="mak" style="justify-content: center;" src="{% static 'g911.png' %}" width="" alt="logo" />
+              <!-- <img class="mako" src="{% static 'mobilelogo.png' %}" width="" alt="logo" /> -->
+              <!-- <span style="font-size: 18px;color:white;font-weight: 800;">MY Anime 
+                <span style="display:block;color:white">Dictionary</span> </span>  -->
+            <nav>
+                
+
+                <ul class="primary-nav">
+                        <!-- <li class="search">
+                            
+                          
+                        </li>
+                        <li><a href="/gen/Shounen">Shounen</a></li>
+                        <li><a href="/gen/Comedy">Comedy</a></li>
+                        <li><a href="/gen/Action">Action</a></li> -->
+                        <!-- <li><a href="/gen/Adventure">Adventure</a></li> -->
+                       
+
+                        {% if user.is_authenticated %}
+
+                        <li><a href="/top1anime">Top 100 Animes</a></li>
+                        
+                        <li><a href="/top1movie">Top 100 Movies</a></li>
+                        
+                        <form action="{% url 'logout_attempt' %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-link" style="color:blueviolet" value="Logout">
+                                Logout
+                            </button>
+                        
+                        </form>
+                        {% endif %}
+
+                     
+                        <!-- <li><a href="/gen/Sports">Sports</a></li> -->
+                        
+                        <!-- <li><a href="">Adventure</a></li>
+               
+                            <li><a href="">Sci-Fi</a></li> -->
+                            {% if user.is_authenticated is False %}
+
+                            <li><a href="/accounts/login/">Login</a></li>
+                            <li><a href="/register">Create Account</a></li>
+                            {% endif %}
+                       
+                </ul>
+               
+            </nav>
+
+        </div>
+    </div>
+
+
+    <script >const mobileBtn = document.getElementById('mobile-cta');
+       const nav = document.querySelector('nav');
+       const mobileBtnExit = document.getElementById('mobile-exit');
+
+  mobileBtn.addEventListener('click', () => {
+         nav.classList.toggle('menu-btn');
+         mobileBtn.classList.toggle('open');
+  })
+
+//   mobileBtnExit.addEventListener('click', () => {
+//       nav.classList.remove('menu-btn');
+//   })
+
+ 
+	// nav_ico=document.getElementsByClassName('nav-icon1');
+    // nav_ico.addEventListener('click', () => {
+	// 	nav_ico.toggleClass('open');
+	// });
+
+
+
+</script>
+</body>
+</html>

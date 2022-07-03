@@ -1,0 +1,185 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<!-- <script type="text/javascript" src="../eel.js"></script> -->
+
+<div class="headouter" style="display:flex;">
+  <div class="head nop" style="font-size:3rem; font-weight: 800 ;
+   color: azure;  
+  
+  
+  
+  margin-bottom: 2rem ; border-radius:.2rem;width:99% ;margin: 1.9rem auto;border:11px; " >
+  <h1 class="digiplay " style="text-align:center;
+   text-transform: capitalize;font-weight:900">
+  {% if user.is_authenticated %}
+  Hi {{request.user.username}}
+  
+  {% endif %}
+  
+  </h1>
+  <div class="search" style="margin: 0 .4rem;"><form action="#" class="search-container" 
+    onSubmit="return checkAnswer();"
+  style="display: flex;flex-direction: row;justify-content: center;">
+    <input class="nav-search" id="answer" type="text" 
+    placeholder="Search New Anime" autofocus name="search">
+    <button class="search-btn submit" style="border-radius:0px 10px 10px 0;padding-right:1rem" type="submit" onclick="checkAnswer()"
+     value="SUBMIT"><i class="fa fa-search"></i></button>
+  </form>
+  <script>
+    function checkAnswer(){
+        var response = document.getElementById('answer').value;
+  
+        location = 'https://my-anime-dictionary.herokuapp.com/search_anime/'+response; // 'right.html';
+        return false;
+    }
+    </script>
+  </div>
+  <div class="owl-carousel owl-theme" style="margin-bottom: .8rem;margin-top: 1.8rem; z-index:777">
+    <div class="item" style="font-size:18px;text-align:center;text-decoration: none;border-radius: 15px;padding: .1rem .6rem;  "><a href="/gen/Shounen">
+      <img src="{% static '9.svg' %}" height="225px" alt="">
+      Shounen</a></div>
+    <div class="item" style="font-size:18px;text-align:center;text-decoration: none;border-radius: 15px;padding: .1rem .6rem; "><a href="/gen/Comedy">
+      <img src="{% static '8.svg' %}"   height="225px" alt="">
+      Comedy</a></div>
+    <div class="item" style="font-size:18px;text-align:center;text-decoration: none;border-radius: 15px;padding: .1rem .6rem; "><a href="/gen/Action">   
+      <img src="{% static '1.svg' %}" height="225px" alt="">
+      Action</a></div>
+    <div class="item" style="font-size:18px;text-align:center;text-decoration: none;border-radius: 15px;padding: .1rem .6rem; "><a href="/gen/Adventure"> 
+      <img src="{% static '2.svg' %}"  height="225px" alt="">
+      Adventure</a></div>
+    <div class="item" style="font-size:18px;text-align:center;text-decoration: none;border-radius: 15px;padding: .1rem .6rem; "><a href="/gen/SliceofLife">
+      <img src="{% static '3.svg' %}"  height="225px" alt="">
+      Slice of Life</a></div>
+    <div class="item" style="font-size:18px;text-align:center;text-decoration: none;border-radius: 15px;padding: .1rem .6rem; "><a href="/gen/Sci-Fi">
+      <img src="{% static '4.svg' %}"  height="225px" alt="">
+      Sci-Fi</a></div>
+    <div class="item" style="font-size:18px;text-align:center;text-decoration: none;border-radius: 15px;padding: .1rem .6rem; "><a href="/gen/Mystery">
+      <img src="{% static '5.svg' %}"  height="225px" alt="">
+      Mystery</a></div>
+    <div class="item" style="font-size:18px;text-align:center;text-decoration: none;border-radius: 15px;padding: .1rem .6rem; "><a href="/gen/Sports">
+         <img src="{% static '6.svg' %}"  height="225px" alt="">
+      Sports</a></div>
+    <div class="item" style="font-size:18px;text-align:center;text-decoration: none;border-radius: 15px;padding: .1rem .6rem; "><a href="/gen/Romance">
+         <img src="{% static '7.svg' %}"  height="225px" alt="">
+      Romance</a></div>
+    <div class="item" style="font-size:18px;text-align:center;text-decoration: none;border-radius: 15px;padding: .1rem .6rem; "><a href="/gen/Suspense">
+         <img src="{% static '8.svg' %}"  height="225px" alt="">
+      Suspense</a></div>
+    <div class="item" style="font-size:18px;text-align:center;text-decoration: none;border-radius: 15px;padding: .1rem .6rem; "><a href="/gen/Military">
+         <img src="{% static '10.svg' %}"  height="225px" alt="">
+      Military</a></div>
+    <div class="item" style="font-size:18px;text-align:center;text-decoration: none;border-radius: 15px;padding: .1rem .6rem; "><a href="/gen/School">
+         <img src="{% static '9.svg' %}"  height="225px" alt="">
+      School</a></div>
+  
+   
+   </div> 
+  </div></div>
+<div class="container-fluid">
+<div class="row">
+  {% for i in fil1 %}
+     
+  
+<div id="{{i.english_name}}"  class=" col-lg-2 col-md-4 col-sm-6 zoom" style="text-align: center;color:white; ">
+  <!-- onClick="reply_click(this.id)" -->
+  <a href="/similar_by_content/{{i.english_name}}" style="display:inline-block; margin: 0 auto;"  >
+  <img src="{{i.img_src}}" style="cursor: pointer;" class="gap{{i}} slide-image"    height="295px"   alt="">
+  <p style="position: relative; bottom:79px; width:88%;
+   backdrop-filter: blur(16px) saturate(180%);
+-webkit-backdrop-filter: blur(16px) saturate(180%);
+background-color: rgba(17, 25, 40, 0.75);
+border-radius: 12px;
+border: 1px solid rgba(255, 255, 255, 0.125);
+  margin: 1px auto;margin-bottom:-51px;padding:11px 11px;" >{{i.english_name | slice:':25'}}</p> 
+  <!-- <p>{{i.img_src}}</p> -->
+</a>
+</div>
+
+{% endfor %}
+{% for i in fil3 %}
+    
+  
+<div id="{{i.english_name}}"  class="col-lg-2 col-md-4 col-sm-6 zoom" style="text-align: center;color:white; ">
+  <!-- onClick="reply_click(this.id)" -->
+  <a href="/similar_by_content/{{i.english_name}}" style="display:inline-block; margin: 0 auto;"  >
+  <img src="{{i.img_src}}" style="cursor: pointer;" class="gap{{i}} slide-image"    height="295px"   alt="">
+  <p style="position: relative; bottom:79px; width:88%;
+   backdrop-filter: blur(16px) saturate(180%);
+-webkit-backdrop-filter: blur(16px) saturate(180%);
+background-color: rgba(17, 25, 40, 0.75);
+border-radius: 12px;
+border: 1px solid rgba(255, 255, 255, 0.125);
+  margin: 1px auto;margin-bottom:-51px;padding:11px 11px;" >{{i.english_name | slice:':25'}}</p> 
+  <!-- <p>{{i.img_src}}</p> -->
+</a>
+</div>
+
+{% endfor %}
+{% for i in fil4 %}
+    
+  
+<div id="{{i.english_name}}"  class="col-lg-2 col-md-4 col-sm-6 zoom" style="text-align: center;color:white; ">
+  <!-- onClick="reply_click(this.id)" -->
+  <a href="/similar_by_content/{{i.english_name}}" style="display:inline-block; margin: 0 auto;"  >
+  <img src="{{i.img_src}}" style="cursor: pointer;" class="gap{{i}} slide-image"    height="295px"   alt="">
+  <p style="position: relative; bottom:79px; width:88%;
+   backdrop-filter: blur(16px) saturate(180%);
+-webkit-backdrop-filter: blur(16px) saturate(180%);
+background-color: rgba(17, 25, 40, 0.75);
+border-radius: 12px;
+border: 1px solid rgba(255, 255, 255, 0.125);
+  margin: 1px auto;margin-bottom:-51px;padding:11px 11px;" >{{i.english_name | slice:':25'}}</p> 
+  <!-- <p>{{i.img_src}}</p> -->
+</a>
+</div>
+
+{% endfor %}
+{% for i in fil2 %}
+    
+  
+<div id="{{i.english_name}}"  class="col-lg-2 col-md-4 col-sm-6 zoom" style="text-align: center;color:white; ">
+  <!-- onClick="reply_click(this.id)" -->
+  <a href="/similar_by_content/{{i.english_name}}" style="display:inline-block; margin: 0 auto;"  >
+  <img src="{{i.img_src}}" style="cursor: pointer;" class="gap{{i}} slide-image"    height="295px"   alt="">
+  <p style="position: relative; bottom:79px; width:88%;
+   backdrop-filter: blur(16px) saturate(180%);
+-webkit-backdrop-filter: blur(16px) saturate(180%);
+background-color: rgba(17, 25, 40, 0.75);
+border-radius: 12px;
+border: 1px solid rgba(255, 255, 255, 0.125);
+  margin: 1px auto;margin-bottom:-51px;padding:11px 11px;" >{{i.english_name | slice:':25'}}</p> 
+  <!-- <p>{{i.img_src}}</p> -->
+</a>
+</div>
+
+{% endfor %}
+
+</div>
+</div>
+
+<!-- js code ahead -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>$('.owl-carousel').owlCarousel({
+    loop:true,
+    margin:10,
+    nav:false,
+    dots:false,
+    autoplay:true,
+    responsive:{
+        0:{
+            items:3
+        },
+        600:{
+            items:6
+        },
+        1000:{
+            items:9
+        }
+    }
+})</script>
+
+{% endblock %}
+

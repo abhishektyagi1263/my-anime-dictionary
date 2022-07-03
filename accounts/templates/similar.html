@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- <script type="text/javascript" src="../eel.js"></script> -->
+
+<!-- <img src="{{data.img_src}}" style="
+width:351px;
+position: absolute;
+top:0;
+right:0;
+-webkit-mask-image: linear-gradient(to right, transparent 25%, black 75%);
+  mask-image: linear-gradient(to right, transparent 25%, black 75%);
+  z-index:-1;
+
+
+" alt=""> -->
+
+<div class="container " style="color:white;" >
+    
+   <div class="desc-main" >
+    <div class="pong" style="margin-top:1rem; flex-grow: 3;align-items: center; justify-content: center; display: flex;">
+        
+      <img src="{{data.img_src}}" class="desc-img" style=" margin:auto;" alt="cover img of {{title}}">
+    </div> 
+        <div class="" style="flex-grow: 8; display: flex;flex-direction: column;"> 
+          <div class="bigline">
+            
+            <h1 style="margin-top:1rem;font-weight: 800;">{{data.english_name}}</h1>
+            <div class="base-line"><h5 class="base-child">Total Episodes : {{data.episodes}}</h5>
+              <h5 class="base-child">Stream : {{data.animetype}}</h5>
+              <h5 >Rating : {{data.rating}}<img src="https://img.icons8.com/fluency/48/000000/star.png" width="25px" height="25px" alt=""></h5>
+               <h5 class="base-child" >Members : {{data.members}}</h5.>
+              
+              </div>
+         
+              <h5>Genre :  {{data.genreb}},
+                {{data.genrec}}, {{data.genred}}
+                 </h5>
+                <h5>Synopsis</h5>  <p>{{data.description}}</p>
+                
+          </div>
+
+          <iframe width="301" height="190"
+          class="similar-youtube"
+          src="{{data.youtube}}">
+          </iframe>
+           
+             </div>
+   
+        <!-- <div class="pong" style="margin-top:1rem;margin-left:1rem;flex-grow: 1;align-items: flex-end;justify-content: center;">
+        
+          <img src="{{data.img_src}}" class="mx-auto" style="display: inline-block; width: 250px;" alt="cover img of {{title}}"> -->
+        <!-- </div>  -->
+      </div> 
+       
+    
+ 
+</div>
+<h3 style="text-align: center; color:white; margin:1rem">Recommendations</h3>
+
+
+
+<div class="owl-carousel owl-theme">
+    
+    {% for i in topanime %}
+    
+  
+      <div id="{{i.name}}"  class="item zoom" style="text-align: center;color:white; width:100% ">
+        <!-- onClick="reply_click(this.id)" -->
+        <a href="/similar_by_content/{{i.english_name}}" style="display:inline-block; margin: 0 auto;"  >
+        <img src="{{i.MAL}}" style="cursor: pointer;" class="gap{{i}} slide-image"    height="295px"  alt="">
+        <p style="position: relative; bottom:79px; width:85%;
+         backdrop-filter: blur(16px) saturate(180%);
+        -webkit-backdrop-filter: blur(16px) saturate(180%);
+        background-color: rgba(0, 0, 0, 0.75);
+        border-radius: 12px;
+        border: 1px solid rgba(209, 213, 219, 0.3);
+        margin: 1px auto;padding:11px 11px;" >{{i.english_name | slice:':25'}}</p> 
+        <!-- <p>{{i.img_src}}</p> -->
+      </a>
+      </div>
+  
+    {% endfor %}
+  
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>$('.owl-carousel').owlCarousel({
+    loop:true,
+    margin:10,
+    nav:false,
+    dots:false,
+    autoplay:true,
+    responsive:{
+        0:{
+            items:2
+        },
+        600:{
+            items:4
+        },
+        1000:{
+            items:7
+        }
+    }
+})</script>
+{% endblock %}
+
